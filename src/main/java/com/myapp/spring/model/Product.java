@@ -1,5 +1,7 @@
 package com.myapp.spring.model;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -74,6 +76,23 @@ public class Product {
 
 	public Double getStarRating() {
 		return starRating;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(description, price, productId, productName, starRating);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Product))
+			return false;
+		Product other = (Product) obj;
+		return Objects.equals(description, other.description) && Objects.equals(price, other.price)
+				&& Objects.equals(productId, other.productId) && Objects.equals(productName, other.productName)
+				&& Objects.equals(starRating, other.starRating);
 	}
 
 	public void setStarRating(Double starRating) {
