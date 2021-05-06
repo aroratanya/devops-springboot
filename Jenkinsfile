@@ -40,3 +40,5 @@ archive 'target/*.jar'
     stage('Smoke') {
 	    sh "curl --retry-delay 10 --retry 5 http://localhost:7080/ibmdevops/api/v1/products"
     }
+    
+    }
