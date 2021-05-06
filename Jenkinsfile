@@ -2,11 +2,11 @@ node {
     def mvnHome
     stage('Prepare') {
         git url: 'git@github.com:aroratanya/devops-springboot.git',branch:'develop'
-        mvnHome = tool 'mvn'
+        mvnHome = tool 'maven'
     }
     stage('Build') {
     
-    sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
+    bat "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
     
     
 }
@@ -17,13 +17,13 @@ archive 'target/*.jar'
 }
   stage('Integration Test') {
    
-    sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean verify"
+    bat "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean verify"
     
     
     }
     stage('Sonar') {
   
-    	sh "'${mvnHome}/bin/mvn' sonar:sonar"
+    	bat "'${mvnHome}/bin/mvn' sonar:sonar"
     
     
     }
